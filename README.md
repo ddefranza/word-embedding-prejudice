@@ -95,7 +95,7 @@ embedding_filter <- function(words, embeddingFile) {
   ## Repeat until the stop condition.
   repeat {
       ## Read the file.
-      chunk <- fread(file = embeddingFile,        # File to be read
+      chunk <- fread(file = embeddingFile,          # File to be read
                      skip = skipValue,              # Number of rows to skip
                      nrows = chunkSize,             # Number of rows to read
                      header = FALSE,                # Don't use a header
@@ -127,7 +127,7 @@ embedding_filter <- function(words, embeddingFile) {
 
 Once the pretrained are obtained and filtered, calculating the cosine similarity is relatively straight-forward.
 
-4. <a name="cos-sim"></a>Calculating cosine similarity
+## 4. <a name="cos-sim"></a>Calculating cosine similarity
 
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
