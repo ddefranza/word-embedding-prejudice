@@ -68,10 +68,10 @@ a simple loop can collect all of the required pretrained embeddings:
 ```r
 for (i in seq_along(urls)){
   download.file(urls[i],
-                 paste0("./path_to_working_directory/", basename(urls[1])),
-                 method = "auto", 
-                 mode = "wb", 
-                 cacheOK = FALSE)
+                paste0("./path_to_working_directory/", basename(urls[i])),
+                method = "auto", 
+                mode = "wb", 
+                cacheOK = FALSE)
 }
 ```
 
