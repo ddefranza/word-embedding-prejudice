@@ -9,7 +9,7 @@ The tutorial proceeds as follows:
 2. [Translating dictionaries](#translate-dict)
 3. [Collecting pre-trained word embeddings](#collect-embeddings)
 4. [Calculating cosine similarity](#cos-sim)
-5. Perfroming statistical (permutation) tests
+5. [Perfroming statistical (permutation) tests](#stats-tests)
 
 If you find this tutorial helpful, [**please cite us!**](#how-to-cite)
 
@@ -39,7 +39,7 @@ Where ```positive``` is the name of the vector or list containing the words to b
 ## <a name="collect-embeddings"></a>3. Collecting pre-trained word embeddings
 > _You shall know a word by the company it keeps_ ([Firth, 1957](https://www.worldcat.org/title/synopsis-of-linguistic-theory-1930-1955/oclc/177240275))
 
-Pretrained word embeddings are distributed and distributial representations of a language ([Mikolov et al., 2013](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)). A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
+Pretrained word embeddings are distributed and distributial representations of a language ([Mikolov et al., 2013](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)). A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite) (DeFranza et al., 2020). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
 
 Given a sufficiently sized corpus, researchers can train their own embeddings using one of the popular algorithms such as [GloVe](https://nlp.stanford.edu/projects/glove/) or [word2vec](http://text2vec.org/). However, developers maintaining implementations of the algorithms and researchers developing new methods have made numerous pretrained word embeddings available. These pretrained embeddings are conventient, validated, and intesting in that they are used in a wide range of production systems. Examples include word embeddings trained using [GloVe](https://nlp.stanford.edu/projects/glove/) and [fastText](https://fasttext.cc/). 
 
@@ -134,6 +134,10 @@ A word embedding is the mapping of a string, or word, into a high-dimensional ve
 ![equation](https://latex.codecogs.com/gif.latex?%5Ccos%28%5Ctheta%29%20%3D%20%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5En%20w1_iw2_1%7D%7B%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w1%5E2_i%7D%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w2%5E2_i%7D%7D)
 
 Where the numerator is the dot product of the vectors for word ![equation](https://latex.codecogs.com/gif.latex?w1) and word ![equation](https://latex.codecogs.com/gif.latex?w2), repectively, and the denominator is the product of the norms of the vectors for the same words.
+
+The cosine similarity calculation can be implemented directly through a function in R (the approach the authors took) or through any of the popular packages for R, for example [`text2vec`](http://text2vec.org/). Either way, the analysis procedes by calculating each similarity for each of the required word combinations (e.g., cos(_man_, _freedom_), cos(_man_, _health_), cos(_woman_, _freedom_), cos(_woman_, _health_)). By taking the mean of each pair within each construct, relationships can be measured using basic arithmatic. Details of this calculation are provided in the associated paper (DeFranza et al., 2020).
+
+## 5. <a name="stats-tests"></a>Perfroming statistical (permutation) tests
 
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
