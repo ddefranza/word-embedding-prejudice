@@ -11,7 +11,7 @@ The tutorial proceeds as follows:
 4. [Calculating cosine similarity](#cos-sim)
 5. [Perfroming statistical (permutation) tests](#stats-tests)
 
-If you find this tutorial helpful, [**please cite us!**](#how-to-cite)
+If you find this tutorial helpful, [**please cite us**](#how-to-cite)!
 
 ## <a name="build-dict"></a>1. Building a construct dictionary
 Perhaps the most critical step in this and similar methods is determining the words to include in a construct dictionary. For our research, these dictionaries were drawn from previous research. Specifically, we utilized a dictionary of _male_ and _female_ words from [Bolukbasi et al. (2016)](http://papers.nips.cc/paper/6228-man-is-to-computer-programmer-as-woman-is-to-homemaker-d), and a dictionary of _positive_ and _negative_ words from [Caliskan et al. (2017)](https://science.sciencemag.org/content/356/6334/183). The former was compiled by the researchers and refined using the responses from human raters. The latter was derived from the extant literature on implicit bias.
