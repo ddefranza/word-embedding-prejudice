@@ -6,7 +6,7 @@ The methodology described below can be used to reproduce the analysis in the ass
 The tutorial proceeds as follows:
 
 1. [Building a construct dictionary](#build-dict)
-2. Translating dictionaries
+2. [Translating dictionaries](#translate-dict)
 3. Collecting pre-trained word embeddings
 4. Calculating cosine similarity
 5. Perfroming statistical (permutation) tests
@@ -15,6 +15,19 @@ The tutorial proceeds as follows:
 Perhaps the most critical step in this and similar methods is determining the words to include in a construct dictionary. For our research, these dictionaries were drawn from previous research. Specifically, we utilized a dictionary of _male_ and _female_ words from [Bolukbasi et al. (2016)](http://papers.nips.cc/paper/6228-man-is-to-computer-programmer-as-woman-is-to-homemaker-d), and a dictionary of _positive_ and _negative_ words from [Caliskan et al. (2017)](https://science.sciencemag.org/content/356/6334/183). The former was compiled by the researchers and refined using the responses from human raters. The latter was derived from the extant literature on implicit bias.
 
 While these dictionaries are unique to our project, we feel they offer helpful illustrations of the two prominent strategies researchers could use to develop construct dictionaries for their own work.
+
+## <a name="translate-dict"></a>2. Translating dictionaries
+If the interest is in drawing comparisons across languages, the core dictionary will have to be translated into the dictionaries of interest. It is worth noting that for some research questions, it might make sense to derive unique representations of each construct for each language. For example, certain types of plants (a common validation construct in IAT literature, for example), may have different associations across cultures. In our case, the constructs of interest were relatively general and universal.
+
+The obvious means by which a dictionary could be translated is through trained human translators. This is certainly an option and should be considered. However, our project utilized automated machine translation, specifically through the [Google Translate API](https://cloud.google.com/translate/). This allowed us to quickly translate several hundred words across 45 languages.
+
+To interface with the API, we utilized the [translateR package](https://cran.r-project.org/web/packages/translateR/translateR.pdf) in R. Given a vector of words, for example `positive <- c("caress", "freedom", "health", "love", "peace", "cheer", "friend")`, we can translate from English to German via:
+
+```r
+translate(content.vec = positive, google.api.key = googleKey, source.lang = "en", target.lang = "de")
+```
+
+Where ```positive``` is the name of the vector or list containing the words to be translated, ```googleKey``` is a local variable holding your Google Translate API key, ```"en"``` is the [ISO-639-1 code](https://cloud.google.com/translate/docs/languages) for the source language, and ```"de"``` is the ISO-639-1 code for the target language.
 
 ## How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
