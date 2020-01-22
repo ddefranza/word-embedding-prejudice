@@ -129,6 +129,8 @@ Once the pretrained are obtained and filtered, calculating the cosine similarity
 
 ## 4. <a name="cos-sim"></a>Calculating cosine similarity
 
+A word embedding is the mapping of a string, or word, into a high-dimensional vector or geometric space. Formally, [equation](https://latex.codecogs.com/gif.latex?w_1)
+
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
 
