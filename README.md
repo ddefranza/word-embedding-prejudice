@@ -75,7 +75,7 @@ for (url in urls){
 }
 ```
 
-Where `urls[i]` takes the `i`th item from the list `urls` and `paste0("./path_to_working_directory/", basename(urls[1]))` concatenates without intervening spaces (`paste0`) the working directory `"./path_to_working_directory/"` and the filename from the provided URL `basename(urls[i])`. 
+Where `url` takes the `i`th item from the list `urls` and `paste0("./path_to_working_directory/", basename(url))` concatenates without intervening spaces (`paste0`) the working directory `"./path_to_working_directory/"` and the filename from the provided URL `basename(url)`. 
 
 Once the files are downloaded, they can be read into R via any of the common functions (e.g., the `fread` function in the [`data.table` package](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)) and individual vectors can be extracted for each dictionary word. Note that this may cause memory issues on some machines due to the large size of pretrained embedding files. There are many possible solutions to this challenge. However, the one used by the authors utilizes a chunk-wise filter that reads only the immediately relevant rows from the word embedding file into memory.
 
