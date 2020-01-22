@@ -131,9 +131,9 @@ Once the pretrained are obtained and filtered, calculating the cosine similarity
 
 A word embedding is the mapping of a string, or word, into a high-dimensional vector or geometric space. Formally, ![equation](https://latex.codecogs.com/gif.latex?w_1%20x%20%5Cmapsto%20%5Cmathbb%7BR%7D%5Ed), where ![equation](https://latex.codecogs.com/gif.latex?d) in our case was 300. This allows us to utilize simple metrics of geometric association to calculate similarity between the vector for each word. Specifically, we use the commonly applied metric of orientation known as _cosine similarity_ to measure association between vectors. Formally, cosine similarity is calculated as:
 
-<div align="center">
-  ![equation](https://latex.codecogs.com/gif.latex?%5Ccos%28%5Ctheta%29%20%3D%20%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5En%20w1_iw2_1%7D%7B%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w1%5E2_i%7D%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w2%5E2_i%7D%7D)
-  </div>
+![equation](https://latex.codecogs.com/gif.latex?%5Ccos%28%5Ctheta%29%20%3D%20%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5En%20w1_iw2_1%7D%7B%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w1%5E2_i%7D%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w2%5E2_i%7D%7D)
+
+
 
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
