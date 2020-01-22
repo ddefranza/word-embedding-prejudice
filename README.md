@@ -21,7 +21,12 @@ If the interest is in drawing comparisons across languages, the core dictionary 
 
 The obvious means by which a dictionary could be translated is through trained human translators. This is certainly an option and should be considered. However, our project utilized automated machine translation, specifically through the [Google Translate API](https://cloud.google.com/translate/). This allowed us to quickly translate several hundred words across 45 languages.
 
-To interface with the API, we utilized the [translateR package](https://cran.r-project.org/web/packages/translateR/translateR.pdf) in R. Given a vector of words, for example `positive <- c("caress", "freedom", "health", "love", "peace", "cheer", "friend")`, we can translate from English to German via:
+To interface with the API, we utilized the [translateR package](https://cran.r-project.org/web/packages/translateR/translateR.pdf) in R. Given a vector of words, for example:
+
+```r
+positive <- c("caress", "freedom", "health", "love", "peace", "cheer", "friend")
+```
+we can translate from English to German via:
 
 ```r
 translate(content.vec = positive, google.api.key = googleKey, source.lang = "en", target.lang = "de")
