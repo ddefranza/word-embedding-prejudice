@@ -1,7 +1,7 @@
 # Measuring Prejudice Through Word Embeddings
 This tutorial provides an overview of the method used to analyze gender prejudice and stereotypes across 45 languages, as described in the paper "How Language Shapes Prejudice Against Women: An Examination Across 45 World Languages" (DeFranza, Mishra, &amp; Mishra, 2020). 
 
-The methodology described below can be used to reproduce the analysis in the associated paper. Specifically, it will allow researchers to build construct dictionaries, translate these dictionaries across languages, collect pre-trained word embeddings in each language, calculate the similarity between words of interest, and finally, perform statistical tests on the measured similarities. That said, this method can be further generalized to perform semantic analysis in other ways, using different constructs. The authors hope this resource will help encourage other researchers to utilize the method in their work.
+The methodology described below can be used to reproduce the analysis in the associated paper (DeFranza et al., 2020). Specifically, it will allow researchers to build construct dictionaries, translate these dictionaries across languages, collect pre-trained word embeddings in each language, calculate the similarity between words of interest, and finally, perform statistical tests on the measured similarities. That said, this method can be further generalized to perform semantic analysis in other ways, using different constructs. The authors hope this resource will encourage other researchers to utilize the method in their work.
 
 The tutorial proceeds as follows:
 
@@ -19,11 +19,11 @@ Perhaps the most critical step in this and similar methods is determining the wo
 While these dictionaries are unique to our project, we feel they offer helpful illustrations of the two prominent strategies researchers could use to develop construct dictionaries for their own work.
 
 ## <a name="translate-dict"></a>2. Translating dictionaries
-If the interest is in drawing comparisons across languages, the core dictionary will have to be translated into the languages of interest. It is worth noting that for some research questions, it might make sense to derive unique representations of each construct for each language. For example, certain types of plants (a common validation construct in IAT literature, for example), may have different associations across cultures. In our case, the constructs of interest were relatively general and universal, so direct translation made the most sense.
+If the interest is in drawing comparisons across languages, the core dictionary will have to be translated into the languages of interest. It is worth noting that for some research questions, it might make sense to derive unique representations of each construct for each language. For example, certain types of plants (a common validation construct in IAT literature), may have different associations across cultures. In our case, the constructs of interest were relatively general and universal, so direct translation made the most sense.
 
 The obvious means by which a dictionary could be translated is through trained human translators. This is certainly an option and should be considered. However, our project utilized automated machine translation, specifically through the [Google Translate API](https://cloud.google.com/translate/). This allowed us to quickly translate several hundred words across 45 languages.
 
-To interface with the API, we utilized the [translateR package](https://cran.r-project.org/web/packages/translateR/translateR.pdf) in R. Given a vector of words, for example:
+To interface with the API, we utilized the [translateR package](https://cran.r-project.org/web/packages/translateR/translateR.pdf) in R. Given a list of words, for example:
 
 ```r
 positive <- c("caress", "freedom", "health", "love", "peace", "cheer", "friend")
@@ -34,14 +34,14 @@ we can translate from English to German via:
 translate(content.vec = positive, google.api.key = googleKey, source.lang = "en", target.lang = "de")
 ```
 
-Where ```positive``` is the name of the vector or list containing the words to be translated, ```googleKey``` is a local variable holding your Google Translate API key, ```"en"``` is the [ISO-639-1 code](https://cloud.google.com/translate/docs/languages) for the source language, and ```"de"``` is the ISO-639-1 code for the target language.
+Where ```positive``` is the name of the list containing the words to be translated, ```googleKey``` is a local variable holding your Google Translate API key, ```"en"``` is the [ISO-639-1 code](https://cloud.google.com/translate/docs/languages) for the source language, and ```"de"``` is the ISO-639-1 code for the target language.
 
 ## <a name="collect-embeddings"></a>3. Collecting pre-trained word embeddings
 > _You shall know a word by the company it keeps_ ([Firth, 1957](https://www.worldcat.org/title/synopsis-of-linguistic-theory-1930-1955/oclc/177240275))
 
-Pretrained word embeddings are distributed and distributial representations of a language ([Mikolov et al., 2013](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)). A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite) (DeFranza et al., 2020). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
+Pretrained word embeddings are distributed and distributional representations of a language ([Mikolov et al., 2013](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)). A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite) (DeFranza et al., 2020). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
 
-Given a sufficiently sized corpus, researchers can train their own embeddings using one of the popular algorithms such as [GloVe](https://nlp.stanford.edu/projects/glove/) or [word2vec](http://text2vec.org/). However, developers maintaining implementations of the algorithms and researchers developing new methods have made numerous pretrained word embeddings available. These pretrained embeddings are conventient, validated, and intesting in that they are used in a wide range of production systems. Examples include word embeddings trained using [GloVe](https://nlp.stanford.edu/projects/glove/) and [fastText](https://fasttext.cc/). 
+Given a sufficiently sized corpus, researchers can train their own embeddings using one of the popular algorithms such as [GloVe](https://nlp.stanford.edu/projects/glove/) or [word2vec](http://text2vec.org/). However, developers maintaining implementations of the algorithms and researchers developing new methods have made numerous pretrained word embeddings available. These pretrained embeddings are conventient, validated, and interesting in that they are used in a wide range of production systems. Examples include word embeddings trained using [GloVe](https://nlp.stanford.edu/projects/glove/) and [fastText](https://fasttext.cc/). 
 
 Our work utilized a set of word embeddings trained using fastText on the [Wikipedia](https://github.com/facebookresearch/fastText/blob/master/docs/pretrained-vectors.md) and [Common Crawl](https://github.com/facebookresearch/fastText/blob/master/docs/crawl-vectors.md) corpora. If only a small set of pretrained word embedding models are needed, they can simply be downloaded from the appropriate website.
 
@@ -55,7 +55,7 @@ download.file(URL_for_embedding,
               cacheOK = FALSE)
 ```
 
-Where `URL_for_embedding` is the URL, `"./path_to_working_directory/embedding_name.vec.gz"` is the path and file name where the file will be saved on the local machine, `method = "auto"` is the method R will use to perform the download (this usually defaults to `wget` or `curl`), `mode = "wb"` defines how the file will be encoded, in this case in binary, which is especially important if downloading compressed files (e.g., `.gz`) in a Windows environment, and `cacheOK = FALSE` refuses files from the server-side cached which increases stability.
+Where `URL_for_embedding` is the URL, `"./path_to_working_directory/embedding_name.vec.gz"` is the path and file name where the file will be saved on the local machine, `method = "auto"` is the method R will use to perform the download (this usually defaults to `wget` or `curl`), `mode = "wb"` defines how the file will be encoded, in this case in binary, which is especially important if downloading compressed files (e.g., `.gz`) in a Windows environment, and `cacheOK = FALSE` refuses files from the server-side cache which increases stability.
 
 Given a list of URLs,
 
@@ -67,17 +67,17 @@ a simple loop can collect all of the required pretrained embeddings:
 
 ```r
 for (i in seq_along(urls)){
-  download.file(urls[i],
-                paste0("./path_to_working_directory/", basename(urls[i])),
-                method = "auto", 
-                mode = "wb", 
-                cacheOK = FALSE)
+     download.file(urls[i],
+                   paste0("./path_to_working_directory/", basename(urls[i])),
+                   method = "auto", 
+                   mode = "wb", 
+                   cacheOK = FALSE)
 }
 ```
 
-Where `urls[i]` takes the `i`th item from the list `urls` and `paste0("./path_to_working_directory/", basename(urls[1]))` concatenates without intervening spaces (`paste0`) the working directory `"./path_to_working_directory/"` and the filename from the provided URL `basename(urls[1])`. 
+Where `urls[i]` takes the `i`th item from the list `urls` and `paste0("./path_to_working_directory/", basename(urls[1]))` concatenates without intervening spaces (`paste0`) the working directory `"./path_to_working_directory/"` and the filename from the provided URL `basename(urls[i])`. 
 
-Once the files are downloaded, they can be read into R via any of the common functions (e.g., the `fread` function in the [`data.table` package](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)) and individual vectors can be extracted for each dictionary word. Note that this may cause memory issues on some machines due to the large size of pretrained embedding files. There are many possible solutions to this challenge. However, the one used by the authors utilizes chunk-wise filter that reads only the immediately relevant rows from the word embedding file into memory.
+Once the files are downloaded, they can be read into R via any of the common functions (e.g., the `fread` function in the [`data.table` package](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)) and individual vectors can be extracted for each dictionary word. Note that this may cause memory issues on some machines due to the large size of pretrained embedding files. There are many possible solutions to this challenge. However, the one used by the authors utilizes a chunk-wise filter that reads only the immediately relevant rows from the word embedding file into memory.
 
 For example, such a memory-conserving filter could be implemented using a function similar to:
 
@@ -133,7 +133,7 @@ embedding_filter <- function(words, embeddingFile) {
 }
 ```
 
-Once the pretrained are obtained and filtered, calculating the cosine similarity is relatively straight-forward.
+Once the pretrained embeddings are obtained and filtered, calculating the cosine similarity is relatively straight-forward.
 
 ## 4. <a name="cos-sim"></a>Calculating cosine similarity
 
@@ -143,7 +143,7 @@ A word embedding is the mapping of a string, or word, into a high-dimensional ve
 
 Where the numerator is the dot product of the vectors for word ![equation](https://latex.codecogs.com/gif.latex?w1) and word ![equation](https://latex.codecogs.com/gif.latex?w2), repectively, and the denominator is the product of the norms of the vectors for the same words.
 
-The cosine similarity calculation can be implemented directly through a function in R (the approach the authors took) or through any of the popular packages for R, for example [`text2vec`](http://text2vec.org/). Either way, the analysis procedes by calculating each similarity for each of the required word combinations (e.g., cos(_man_, _freedom_), cos(_man_, _health_), cos(_woman_, _freedom_), cos(_woman_, _health_)). By taking the mean of each pair within each construct, relationships can be measured using basic arithmatic. Details of this calculation are provided in the associated paper (DeFranza et al., 2020).
+The cosine similarity calculation can be implemented directly through a function in R (the approach the authors took) or through a number of popular packages for R, for example [`text2vec`](http://text2vec.org/). Either way, the analysis procedes by calculating each similarity for each of the required word combinations (e.g., cos(_man_, _freedom_), cos(_man_, _health_), cos(_woman_, _freedom_), cos(_woman_, _health_)). By taking the mean of each pair within each construct, relationships can be measured using basic arithmatic. Details of this calculation are provided in the associated paper (DeFranza et al., 2020).
 
 Note that the pairwise calculation of cosine similarities can be simplified somewhat (see [Garten et al., 2018](https://link.springer.com/article/10.3758/s13428-017-0875-9) for a discussion).
 
@@ -151,11 +151,11 @@ Note that the pairwise calculation of cosine similarities can be simplified some
 
 The cosine similarity is representative of the relative orientation of two words in vector space. However, this calculation could be the result of random chance. As such, we test the validity of our observations through the use of the permutation test. Simply, the permutation test compares the likelihood of an observation with that of all possible combinations of the data. An observation that is more extreme than the majority of the permutations is considered unlikely to be the result of chance alone.
 
-Practically speaking, we implemented the permutation with our data by first taking the observation of interest (e.g., _mean_(_male words_, _positive words_)) and comparing it to thousands of similar calculations (10,000 - 50,000 are commonly used), shuffling of one of the labels (e.g., male-female labels) to approximate all possible permutations of male-female and positive-negative word pairs.
+Practically speaking, we implemented the permutation test with our data by first taking the observation of interest (e.g., _mean_(cos(_male words_, _positive words_))) and comparing it to thousands of similar calculations (10,000 - 50,000 are commonly used), shuffling one of the labels (e.g., male-female labels) each iteration, to approximate all possible permutations of male-female and positive-negative word pairs.
 
 This simulation method allows us to calculate a _p_-value, effect size, and other common statistics. One note is that often bootstrapping and other simulation methods produce a _p_-value of 0, which is mathematically impossible. A correction for this has been implemented in the [`permp` package](https://cran.r-project.org/web/packages/perm/perm.pdf) ([Phipson & Smyth, 2016](https://arxiv.org/abs/1603.05766)).
 
-Once these calculations have been completed, constructs can be compared using traditional methods (e.g., linear models including ANOVA, OLS regression, etc.). A full discussion of our statistical analyses, for example, is included in the paper (DeFranza et al., 2020).
+Once these calculations have been completed, constructs can be compared using traditional methods (e.g., linear models including ANOVA, OLS regression, etc.). A full discussion of our statistical analyses is included in the paper (DeFranza et al., 2020).
 
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
