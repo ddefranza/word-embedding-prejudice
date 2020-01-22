@@ -38,7 +38,7 @@ Where ```positive``` is the name of the vector or list containing the words to b
 
 ## <a name="collect-embeddings"></a>3. Collecting pre-trained word embeddings
 > _You shall know a word by the company it keeps_
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash; [Firth, 1957](https://www.worldcat.org/title/synopsis-of-linguistic-theory-1930-1955/oclc/177240275)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &mdash; [Firth, 1957](https://www.worldcat.org/title/synopsis-of-linguistic-theory-1930-1955/oclc/177240275)
 
 Pretrained word embeddings are distributed and distributial representations of a language. A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
 
