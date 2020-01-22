@@ -145,7 +145,7 @@ Where the numerator is the dot product of the vectors for word ![equation](https
 
 The cosine similarity calculation can be implemented directly through a function in R (the approach the authors took) or through a number of popular packages for R, for example [`text2vec`](http://text2vec.org/). Either way, the analysis procedes by calculating each similarity for each of the required word combinations (e.g., cos(_man_, _freedom_), cos(_man_, _health_), cos(_woman_, _freedom_), cos(_woman_, _health_)). By taking the mean of each pair within each construct, relationships can be measured using basic arithmatic. Details of this calculation are provided in the associated paper (DeFranza et al., 2020).
 
-Note that the pairwise calculation of cosine similarities can be simplified somewhat (see [Garten et al., 2018](https://link.springer.com/article/10.3758/s13428-017-0875-9) for a discussion).
+Note that the pairwise calculation of cosine similarities can be simplified (see [Garten et al., 2018](https://link.springer.com/article/10.3758/s13428-017-0875-9) for a discussion).
 
 ## 5. <a name="stats-tests"></a>Perfroming statistical (permutation) tests
 
