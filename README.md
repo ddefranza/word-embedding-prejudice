@@ -139,6 +139,12 @@ The cosine similarity calculation can be implemented directly through a function
 
 ## 5. <a name="stats-tests"></a>Perfroming statistical (permutation) tests
 
+The cosine similarity is representative of the relative orientation of two words in vector space. However, this calculation could be the result of random chance. As such, we test the validity of our observations through the use of the permutation test. Simply, the permutation test compares the likelihood of an observation with that of all possible combinations of the data. An observation that is more extreme than the majority of the permutations is considered unlikely to be the result of chance alone.
+
+Practically speaking, we implemented the permutation with our data by first taking the observation of interest (e.g., _mean_(_male words_, _positive words_)) and comparing it to thousands of similar calculations (10,000 - 50,000 are commonly used), shuffling of one of the labels (e.g., male-female labels) to approximate all possible permutations of male-female and positive-negative word pairs.
+
+This simulation method allows us to calculate a _p_-value, effect size, and other common statistics. One note is that often bootstrapping and other simulation methods produce a _p_-value of 0, which is mathematically impossible. A correction for this has been implemented in the [`permp` package](https://cran.r-project.org/web/packages/perm/perm.pdf) ([Phipson & Smyth, 2016](https://arxiv.org/abs/1603.05766)).
+
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
 
