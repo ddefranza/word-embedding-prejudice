@@ -133,7 +133,7 @@ A word embedding is the mapping of a string, or word, into a high-dimensional ve
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Ccos%28%5Ctheta%29%20%3D%20%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5En%20w1_iw2_1%7D%7B%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w1%5E2_i%7D%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w2%5E2_i%7D%7D)
 
-Where ![equation](https://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D1%7D%5En%20w1_iw2_1) is the dot product of the vectors for word ![equation](https://latex.codecogs.com/gif.latex?w1) and word ![equation](https://latex.codecogs.com/gif.latex?w2), repectively, and ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w1%5E2_i%7D%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w2%5E2_i%7D) is the product of the norms of the vectors for the same words.
+Where ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Csum_%7Bi%3D1%7D%5En%20w1_iw2_1) is the dot product of the vectors for word ![equation](https://latex.codecogs.com/gif.latex?w1) and word ![equation](https://latex.codecogs.com/gif.latex?w2), repectively, and ![equation](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w1%5E2_i%7D%5Csqrt%7B%5Csum_%7Bn%3D1%7D%5En%20w2%5E2_i%7D) is the product of the norms of the vectors for the same words.
 
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
