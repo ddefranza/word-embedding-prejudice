@@ -7,7 +7,7 @@ The tutorial proceeds as follows:
 
 1. [Building a construct dictionary](#build-dict)
 2. [Translating dictionaries](#translate-dict)
-3. Collecting pre-trained word embeddings
+3. [Collecting pre-trained word embeddings](#collect-embeddings)
 4. Calculating cosine similarity
 5. Perfroming statistical (permutation) tests
 
@@ -17,7 +17,7 @@ Perhaps the most critical step in this and similar methods is determining the wo
 While these dictionaries are unique to our project, we feel they offer helpful illustrations of the two prominent strategies researchers could use to develop construct dictionaries for their own work.
 
 ## <a name="translate-dict"></a>2. Translating dictionaries
-If the interest is in drawing comparisons across languages, the core dictionary will have to be translated into the dictionaries of interest. It is worth noting that for some research questions, it might make sense to derive unique representations of each construct for each language. For example, certain types of plants (a common validation construct in IAT literature, for example), may have different associations across cultures. In our case, the constructs of interest were relatively general and universal.
+If the interest is in drawing comparisons across languages, the core dictionary will have to be translated into the languages of interest. It is worth noting that for some research questions, it might make sense to derive unique representations of each construct for each language. For example, certain types of plants (a common validation construct in IAT literature, for example), may have different associations across cultures. In our case, the constructs of interest were relatively general and universal, so direct translation made the most sense.
 
 The obvious means by which a dictionary could be translated is through trained human translators. This is certainly an option and should be considered. However, our project utilized automated machine translation, specifically through the [Google Translate API](https://cloud.google.com/translate/). This allowed us to quickly translate several hundred words across 45 languages.
 
@@ -33,6 +33,8 @@ translate(content.vec = positive, google.api.key = googleKey, source.lang = "en"
 ```
 
 Where ```positive``` is the name of the vector or list containing the words to be translated, ```googleKey``` is a local variable holding your Google Translate API key, ```"en"``` is the [ISO-639-1 code](https://cloud.google.com/translate/docs/languages) for the source language, and ```"de"``` is the ISO-639-1 code for the target language.
+
+## <a name="collect-embeddings"></a>3. Collecting pre-trained word embeddings
 
 ## How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
