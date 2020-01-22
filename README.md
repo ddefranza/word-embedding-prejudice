@@ -147,7 +147,7 @@ Practically speaking, we implemented the permutation with our data by first taki
 
 This simulation method allows us to calculate a _p_-value, effect size, and other common statistics. One note is that often bootstrapping and other simulation methods produce a _p_-value of 0, which is mathematically impossible. A correction for this has been implemented in the [`permp` package](https://cran.r-project.org/web/packages/perm/perm.pdf) ([Phipson & Smyth, 2016](https://arxiv.org/abs/1603.05766)).
 
-Once these calculations have been completed, constructs can be compared using traditional methods (e.g., linear models including ANOVA, OLS regression, etc.).
+Once these calculations have been completed, constructs can be compared using traditional methods (e.g., linear models including ANOVA, OLS regression, etc.). A full discussion of our statistical analyses, for example, is included in the paper (DeFranza et al., 2020).
 
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
