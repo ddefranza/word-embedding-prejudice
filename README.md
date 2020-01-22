@@ -11,6 +11,8 @@ The tutorial proceeds as follows:
 4. Calculating cosine similarity
 5. Perfroming statistical (permutation) tests
 
+If you find this tutorial helpful, [**Please cite us!**](#how-to-cite)
+
 ## <a name="build-dict"></a>1. Building a construct dictionary
 Perhaps the most critical step in this and similar methods is determining the words to include in a construct dictionary. For our research, these dictionaries were drawn from previous research. Specifically, we utilized a dictionary of _male_ and _female_ words from [Bolukbasi et al. (2016)](http://papers.nips.cc/paper/6228-man-is-to-computer-programmer-as-woman-is-to-homemaker-d), and a dictionary of _positive_ and _negative_ words from [Caliskan et al. (2017)](https://science.sciencemag.org/content/356/6334/183). The former was compiled by the researchers and refined using the responses from human raters. The latter was derived from the extant literature on implicit bias.
 
@@ -35,8 +37,11 @@ translate(content.vec = positive, google.api.key = googleKey, source.lang = "en"
 Where ```positive``` is the name of the vector or list containing the words to be translated, ```googleKey``` is a local variable holding your Google Translate API key, ```"en"``` is the [ISO-639-1 code](https://cloud.google.com/translate/docs/languages) for the source language, and ```"de"``` is the ISO-639-1 code for the target language.
 
 ## <a name="collect-embeddings"></a>3. Collecting pre-trained word embeddings
+> _You shall know a word by the company it keeps_
+<div style="text-align: right">&mdash; [Firth, 1957](https://www.worldcat.org/title/synopsis-of-linguistic-theory-1930-1955/oclc/177240275)</div>
+Pretrained word embeddings are distributed and distributial representations of a language. A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
 
-## How to cite
+## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please including the following citation in your work:
 
 DeFranza, D., Mishra, H., & Mishra, A. (2020). How language shapes prejudice against women: An examination across 45 world languages. *Journal of Personality and Social Psychology*.
