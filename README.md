@@ -48,7 +48,11 @@ Our work utilized a set of word embeddings trained using fastText on the [Wikipe
 If working with a large number of different pretrained embeddings, as we were, it is helpful to automate this process through a function. For example, in R, we can download each embedding from a list of URLs with the following:
 
 ```r
-download.file(URL_for_embedding, "./path_to_working_directory/embedding_name.vec.gz", method = "auto", mode = "wb", cacheOK = FALSE)
+download.file(URL_for_embedding,
+              "./path_to_working_directory/embedding_name.vec.gz",
+              method = "auto", 
+              mode = "wb", 
+              cacheOK = FALSE)
 ```
 
 Where `URL_for_embedding` is the URL, `"./path_to_working_directory/embedding_name.vec.gz"` is the path and file name where the file will be saved on the local machine, `method = "auto"` is the method R will use to perform the download (this usually defaults to `wget` or `curl`), `mode = "wb"` defines how the file will be encoded, in this case in binary, which is especially important if downloading compressed files (e.g., `.gz`) in a Windows environment, and `cacheOK = FALSE` refuses files from the server-side cached which increases stability.
@@ -63,7 +67,11 @@ a simple loop can collect all of the required pretrained embeddings:
 
 ```r
 for (i in seq_along(urls)){
-  download.file(urls[i], paste0("./path_to_working_directory/", basename(urls[1])), method = "auto", mode = "wb", cacheOK = FALSE)
+  download.file(urls[i],
+                 paste0("./path_to_working_directory/", basename(urls[1])),
+                 method = "auto", 
+                 mode = "wb", 
+                 cacheOK = FALSE)
 }
 ```
 
