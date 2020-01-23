@@ -1,7 +1,7 @@
 # Measuring Prejudice Through Word Embeddings
 This tutorial provides an overview of the method used to analyze gender prejudice and stereotypes across 45 languages, as described in the paper "How Language Shapes Prejudice Against Women: An Examination Across 45 World Languages" (DeFranza, Mishra, &amp; Mishra, 2020). 
 
-The methodology described below can be used to reproduce the analysis in the associated paper (DeFranza et al., 2020). Specifically, it will allow researchers to build construct dictionaries, translate these dictionaries across languages, collect pre-trained word embeddings in each language, calculate the similarity between words of interest, and finally, perform statistical tests on the measured similarities. That said, this method can be further generalized to perform semantic analysis in other ways, using different constructs. The authors hope this resource will encourage other researchers to utilize the method in their work.
+The methodology described below will help researchers to build dictionaries, translate these dictionaries across languages, collect pre-trained word embeddings in each language, calculate the similarity between words of interest, and finally, perform statistical tests on the measured similarities. That said, this method can be further generalized to perform semantic analysis in other ways, using different constructs. The authors hope this resource will encourage other researchers to utilize the method in their work.
 
 The tutorial proceeds as follows:
 
@@ -39,9 +39,9 @@ Where ```positive``` is the name of the list containing the words to be translat
 ## <a name="collect-embeddings"></a>3. Collecting pre-trained word embeddings
 > _You shall know a word by the company it keeps_ ([Firth, 1957](https://www.worldcat.org/title/synopsis-of-linguistic-theory-1930-1955/oclc/177240275))
 
-Pretrained word embeddings are distributed and distributional representations of a language ([Mikolov et al., 2013](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)). A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite) (DeFranza et al., 2020). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
+Pretrained word embeddings are distributed representations of a language ([Mikolov et al., 2013](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)). A thorough description of word embeddings, the underlying theory, and the specific method used to train the embeddings used in this project is [provided in the paper](#how-to-cite) (DeFranza et al., 2020). Briefly, however, word embeddings are a numerical representation of a word in terms of its relative association with all other words observed in a language. 
 
-Given a sufficiently sized corpus, researchers can train their own embeddings using one of the popular algorithms such as [GloVe](https://nlp.stanford.edu/projects/glove/) or [word2vec](http://text2vec.org/). However, developers maintaining implementations of the algorithms and researchers developing new methods have made numerous pretrained word embeddings available. These pretrained embeddings are conventient, validated, and interesting in that they are used in a wide range of production systems. Examples include word embeddings trained using [GloVe](https://nlp.stanford.edu/projects/glove/) and [fastText](https://fasttext.cc/). 
+Given a large corpus, researchers can train their own embeddings using one of the popular algorithms such as [GloVe](https://nlp.stanford.edu/projects/glove/) or [word2vec](http://text2vec.org/). However, developers maintaining implementations of the algorithms and researchers developing new methods have made numerous pretrained word embeddings available. These pretrained embeddings are conventient, validated, and interesting in that they are used in a wide range of production systems. Examples include word embeddings trained using [GloVe](https://nlp.stanford.edu/projects/glove/) and [fastText](https://fasttext.cc/). 
 
 Our work utilized a set of word embeddings trained using fastText on the [Wikipedia](https://github.com/facebookresearch/fastText/blob/master/docs/pretrained-vectors.md) and [Common Crawl](https://github.com/facebookresearch/fastText/blob/master/docs/crawl-vectors.md) corpora. If only a small set of pretrained word embedding models are needed, they can simply be downloaded from the appropriate website.
 
@@ -77,7 +77,7 @@ for (url in urls){
 
 Where `url` takes the `i`<sup>th</sup> item from the list `urls` and `paste0("./path_to_working_directory/", basename(url))` concatenates without intervening spaces (`paste0`) the working directory `"./path_to_working_directory/"` and the filename from the provided URL `basename(url)`. 
 
-Once the files are downloaded, they can be read into R via any of the common functions (e.g., the `fread` function in the [`data.table` package](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)) and individual vectors can be extracted for each dictionary word. Note that this may cause memory issues on some machines due to the large size of pretrained embedding files. There are many possible solutions to this challenge. However, the one used by the authors utilizes a chunk-wise filter that reads only the immediately relevant rows from the word embedding file into memory.
+Once the files are downloaded, they can be read into R via any of the common functions (e.g., the `fread` function in the [`data.table` package](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)) and individual vectors can be extracted for each dictionary word. Note that this may cause memory issues on some machines due to the large size of pretrained embedding files. There are many possible solutions to this challenge. However, the one used by us utilizes a chunk-wise filter that reads only the immediately relevant rows from the word embedding file into memory.
 
 For example, such a memory-conserving filter could be implemented using a function similar to:
 
@@ -149,7 +149,7 @@ Note that the pairwise calculation of cosine similarities can be simplified (see
 
 ## 5. <a name="stats-tests"></a>Perfroming statistical (permutation) tests
 
-The cosine similarity is representative of the relative orientation of two words in vector space. However, this calculation could be the result of random chance. As such, we test the validity of our observations through the use of the permutation test. Simply, the permutation test compares the likelihood of an observation with that of all possible combinations of the data. An observation that is more extreme than the majority of the permutations is considered unlikely to be the result of chance alone.
+The cosine similarity is representative of the relative orientation of two words in vector space. However, this calculation could be the result of random chance. As such, we test the validity of our observations through the use of the permutation test (adapted from [Caliskan et al. (2017)](https://science.sciencemag.org/content/356/6334/183)). Simply, the permutation test compares the likelihood of an observation with that of all possible combinations of the data. An observation that is more extreme than the majority of the permutations is considered unlikely to be the result of chance alone.
 
 Practically speaking, we implemented the permutation test with our data by first taking the observation of interest (e.g., _mean_(cos(_male words_, _positive words_))) and comparing it to thousands of similar calculations (10,000 - 50,000 are commonly used), shuffling one of the labels (e.g., male-female labels) each iteration, to approximate all possible permutations of male-female and positive-negative word pairs.
 
@@ -158,6 +158,6 @@ This simulation method allows us to calculate a _p_-value, effect size, and othe
 Once these calculations have been completed, constructs can be compared using traditional methods (e.g., linear models including ANOVA, OLS regression, etc.). A full discussion of our statistical analyses is included in the paper (DeFranza et al., 2020).
 
 ## <a name="bhow-to-cite"></a>How to cite
-If you have made use of this tutorial or the associated paper, please including the following citation in your work:
+If you have made use of this tutorial or the associated paper, please include the following citation in your work:
 
 DeFranza, D., Mishra, H., & Mishra, A. (2020). How language shapes prejudice against women: An examination across 45 world languages. *Journal of Personality and Social Psychology*.
