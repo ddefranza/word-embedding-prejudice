@@ -1,5 +1,5 @@
 # Measuring Prejudice Through Word Embeddings
-This tutorial provides an overview of the method used to analyze gender prejudice and stereotypes across 45 languages, as described in the paper "How Language Shapes Prejudice Against Women: An Examination Across 45 World Languages" (DeFranza, Mishra, &amp; Mishra, 2020). 
+This tutorial provides an overview of the method used to analyze gender prejudice and stereotypes across 45 languages, as described in the paper "[How Language Shapes Prejudice Against Women: An Examination Across 45 World Languages](https://doi.org/10.1037/pspa0000188)" (DeFranza, Mishra, &amp; Mishra, 2020). 
 
 The methodology described below will help researchers to build dictionaries, translate these dictionaries across languages, collect pre-trained word embeddings in each language, calculate the similarity between words of interest, and finally, perform statistical tests on the measured similarities. That said, this method can be further generalized to perform semantic analysis in other ways, using different constructs. The authors hope this resource will encourage other researchers to utilize the method in their work.
 
@@ -160,4 +160,17 @@ Once these calculations have been completed, constructs can be compared using tr
 ## <a name="bhow-to-cite"></a>How to cite
 If you have made use of this tutorial or the associated paper, please include the following citation in your work:
 
-DeFranza, D., Mishra, H., & Mishra, A. (2020). How language shapes prejudice against women: An examination across 45 world languages. *Journal of Personality and Social Psychology*.
+DeFranza, D., Mishra, H., & Mishra, A. (2020). How language shapes prejudice against women: An examination across 45 world languages. *Journal of Personality and Social Psychology*. [https://doi.org/10.1037/pspa0000188](https://doi.org/10.1037/pspa0000188)
+
+```
+@article{DeFranza2020,
+  doi = {10.1037/pspa0000188},
+  url = {https://doi.org/10.1037/pspa0000188},
+  year = {2020},
+  month = feb,
+  publisher = {American Psychological Association ({APA})},
+  author = {David DeFranza and Himanshu Mishra and Arul Mishra},
+  title = {How language shapes prejudice against women: An examination across 45 world languages.},
+  journal = {Journal of Personality and Social Psychology}
+}
+```
